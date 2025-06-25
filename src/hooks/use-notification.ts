@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export function useNotification(onReceive: (props: any) => void) {
+export function useNotification(onReceive: (props: { data: { type: string, message: string } } ) => void) {
   const broadcastChannel = new BroadcastChannel("notifications");
 
   useEffect(() => {

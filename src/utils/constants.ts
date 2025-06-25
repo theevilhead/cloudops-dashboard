@@ -1,3 +1,3 @@
-const CONSTANTS = {
+export const APP_CONSTANTS = {
   
 }

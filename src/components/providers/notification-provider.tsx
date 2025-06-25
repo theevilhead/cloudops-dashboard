@@ -6,22 +6,22 @@ export function NotificationProvider({
   children: React.ReactNode;
 }) {
 
-  const onNotificationReceive = (event: any) => {
+  const onNotificationReceive = (event: { data: { type: string, message: string } }) => {
     const { data } = event;
 
-    const { type } = data;
+    const { type, message } = data;
 
     if (type === "warning") {
-      toast.warning(data.message);
+      toast.warning(message);
       return;
     }
 
     if (type === "error") {
-      toast.error(data.message);
+      toast.error(message);
       return;
     }
 
-    toast(data.message);
+    toast(message);
   };
 
   useNotification(onNotificationReceive);
