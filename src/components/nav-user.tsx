@@ -28,17 +28,18 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useUser } from "@/context/UserContext"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+export function NavUser() {
   const { isMobile } = useSidebar()
+
+  const { currentUser: user } = useUser();
+
+  console.log("Current User:", user);
+
+  if (!user) {
+    return null; // or render a placeholder if user data is not available
+  }
 
   return (
     <SidebarMenu>
@@ -51,7 +52,9 @@ export function NavUser({
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg font-bold border" title={user.name || "NA"}>
+                  {user.name ? user.name.charAt(0).toUpperCase() : "NA"}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
