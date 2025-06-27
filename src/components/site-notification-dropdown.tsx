@@ -99,7 +99,7 @@ function SiteNotificationDropdown() {
             </div>
             <div>
               <div>{notification.message}</div>
-              <div className="ml-auto text-xs text-gray-500">
+              <div className="ml-auto text-xs text-gray-500 dark:text-gray-400">
                 {/* Relative time */}
                 {dayjs(notification.createdAt).fromNow()}
               </div>

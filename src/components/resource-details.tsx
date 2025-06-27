@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 function ResourceDetails() {
   return (
-    <div className="container-padding flex flex-col gap-4 justify-center items-center h-screen">
+    <div className="container-padding flex text-center flex-col gap-4 justify-center items-center h-screen">
       You would be seeing the details of the resource here.
       <Button
         variant={"outline"}
