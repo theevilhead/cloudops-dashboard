@@ -120,4 +120,20 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Typography */
+  h3,
+  .h3 {
+    @apply mb-3 leading-none font-semibold;
+  }
+
+  .subtitle {
+    @apply inline-block mb-2 text-secondary-foreground text-sm;
+  }
+
+  /* Layout related */
+  .container-padding {
+    @apply px-4 lg:px-6;
+  }
+
 }
