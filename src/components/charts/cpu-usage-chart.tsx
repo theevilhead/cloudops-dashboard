@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, TrendingUp } from "lucide-react";
+import { Activity } from "lucide-react";
 import {
   Area,
   AreaChart,
@@ -8,14 +8,6 @@ import {
   XAxis,
 } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
