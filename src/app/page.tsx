@@ -1,6 +1,7 @@
 // Main home page
 
 import { Button } from "@/components/ui/button";
+import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,6 +20,8 @@ export default function Home() {
                 alt=""
                 src="/logo.png"
                 className="h-8 w-auto"
+                width={32}
+                height={32}
               />
             </a>
           </div>
@@ -63,10 +66,28 @@ export default function Home() {
                   </Link>
                 </Button>
               </div>
+              <div className="mt-6 text-sm text-gray-800 flex items-center gap-2 justify-center underline underline-offset-4">
+                <Link href="https://github.com/theevilhead/cloudops-dashboard">
+                  Github link
+                </Link>
+                <Dot />
+                <Link href="https://youtu.be/mDvy6Q2lkgk">
+                  Video demo link
+                </Link>
+              </div>
             </div>
             <div className="mt-16 flow-root sm:mt-24">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
-                {/* Loom video embed */}
+                <iframe
+                  width="100%"
+                  height="820px"
+                  src="https://www.youtube.com/embed/mDvy6Q2lkgk?si=K3QCecKbZkOPPSUH"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>
