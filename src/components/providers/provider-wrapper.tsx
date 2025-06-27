@@ -1,3 +1,4 @@
+// A common provider wrapper for root layouts and pages
 "use client";
 
 import { User } from "@/context/UserContext";

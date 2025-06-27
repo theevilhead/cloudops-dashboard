@@ -1,3 +1,5 @@
+// A hook to trigger notifications using BroadcastChannel
+
 "use client";
 import { useEffect } from "react";
 

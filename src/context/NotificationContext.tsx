@@ -1,3 +1,11 @@
+/**
+ * This file managees the notification context for the application.
+ * It provides a way to receive and display notifications using a BroadcastChannel.
+ * Notifications can be of different types (info, warning, error, success) and are displayed
+ * We being with 7 hardcoded notifications for demonstration purposes.
+ * Then once we trigger, they are prepended to them on the fly.
+ */
+
 "use client";
 
 import {

@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "./ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "./ui/input";
 import { SearchIcon } from "lucide-react";
 
 export function DashboardHeader() {
@@ -11,9 +11,20 @@ export function DashboardHeader() {
       <div className="ml-auto flex items-center gap-2 w-1/2">
         <div className="flex items-center relative grow">
           <Input placeholder="Search anything here (CMD + K)" />
-          <Button variant={"ghost"} className="absolute right-0" disabled><SearchIcon /></Button>
+          <Button
+            variant={"ghost"}
+            className="absolute right-0"
+            disabled
+          >
+            <SearchIcon />
+          </Button>
         </div>
-        <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
+        <Button
+          variant="ghost"
+          asChild
+          size="sm"
+          className="hidden sm:flex"
+        >
           <a
             href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
             rel="noopener noreferrer"
