@@ -51,7 +51,7 @@ export default function Home() {
                 Please watch the video below for a complete
                 understanding of the work done here.
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <div className="m-10 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-4">
                 <Button asChild>
                   <Link href="/flipkart">
                     Go to dashboard
