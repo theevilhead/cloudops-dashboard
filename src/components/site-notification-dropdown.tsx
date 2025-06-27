@@ -28,7 +28,7 @@ function SiteNotificationDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button
           size="icon"
           className="size-8 group-data-[collapsible=icon]:opacity-0"

@@ -1,13 +1,11 @@
 import { AppSidebar } from "@/components/app-sidebar";
 // import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { SectionCards } from "@/components/section-cards";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset } from "@/components/ui/sidebar";
 
 import { ProviderWrapper } from "@/components/providers/provider-wrapper";
+import ResourceDetails from "@/components/resource-details";
 import { DUMMY_USER } from "@/data/user";
-import { ResourcesTable } from "@/components/resources-table";
-import { ChartAreaInteractive } from "@/components/charts/chart-area-interactive";
 
 export default async function Dashboard({
   params,
@@ -36,13 +34,7 @@ export default async function Dashboard({
           <div className="flex flex-1 flex-col">
             <div className="@container/main flex flex-1 flex-col gap-2">
               <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-                <SectionCards />
-                <div className="container-padding">
-                  <ChartAreaInteractive />
-                </div>
-                <div className="container-padding">
-                  <ResourcesTable />
-                </div>
+                <ResourceDetails />
               </div>
             </div>
           </div>
