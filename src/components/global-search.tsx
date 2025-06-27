@@ -8,13 +8,12 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { Button } from "./ui/button";
 import { RESOURCES } from "@/data/resources";
-import { Badge } from "./ui/badge";
-import { useRef, useState } from "react";
-import { Cross, X } from "lucide-react";
-import { IconCancel } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
+import { useState } from "react";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 const predefinedSuggestions = [
   {

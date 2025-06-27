@@ -1,5 +1,4 @@
 import { AppSidebar } from "@/components/app-sidebar";
-// import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset } from "@/components/ui/sidebar";
 
