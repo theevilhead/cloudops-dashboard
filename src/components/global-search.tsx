@@ -9,6 +9,50 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Button } from "./ui/button";
+import { RESOURCES } from "@/data/resources";
+import { Badge } from "./ui/badge";
+import { useRef, useState } from "react";
+import { Cross, X } from "lucide-react";
+import { IconCancel } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
+
+const predefinedSuggestions = [
+  {
+    name: "Issues",
+    type: "Open Issues",
+    status: "108 open currently",
+  },
+  {
+    name: "Remediations",
+    type: "By Day2™",
+    status: "80 remediations",
+  },
+  {
+    name: "Recommendations",
+    type: "Compliance",
+    status: "15 compliances",
+  },
+  {
+    name: "Security Posture",
+    type: "Open Issues",
+    status: "150 open issues",
+  },
+  {
+    name: "Compliance Assessment",
+    type: "Open Issues",
+    status: "40 open issues",
+  },
+  {
+    name: "AWS costs",
+    type: "Total Costs",
+    status: "$12,250.00 - Explore more",
+  },
+  {
+    name: "Cost Optimization",
+    type: "Potential Savings",
+    status: "$1,1425 Potential cost savings",
+  },
+];
 
 export function GlobalSearch({
   open,
@@ -22,9 +66,15 @@ export function GlobalSearch({
     status?: string;
   }>;
 }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Search anything here..." />
+      <CommandInput
+        placeholder="Search anything here..."
+        value={searchTerm}
+        onValueChange={(value) => setSearchTerm(value)}
+      />
       {/* Filters */}
       <p className="text-xs text-muted-foreground px-4 pt-2">
         Filter by
@@ -32,165 +82,115 @@ export function GlobalSearch({
       <div className="p-2 flex items-center gap-2 shadow-xs">
         <Button
           variant={"outline"}
-          className="text-xs p-0 px-2 py-1 h-auto rounded-xl"
+          className={cn(
+            "text-xs p-0 px-2 py-1 h-auto rounded-xl",
+            searchTerm === "ec2" ? "bg-gray-200" : ""
+          )}
+          onClick={() => setSearchTerm("ec2")}
         >
           EC2 Instances
         </Button>
         <Button
           variant={"outline"}
-          className="text-xs p-0 px-2 py-1 h-auto rounded-xl"
+          className={cn(
+            "text-xs p-0 px-2 py-1 h-auto rounded-xl",
+            searchTerm === "rds" ? "bg-gray-200" : ""
+          )}
+          onClick={() => setSearchTerm("rds")}
         >
-          EBS Snapshots
+          RDS
+        </Button>
+        <Button
+          variant={"outline"}
+          className="text-xs p-0 px-2 py-1 h-auto rounded-xl"
+          onClick={() => setSearchTerm("")}
+        >
+          Clear filters
+          <X className="h-1 w-1" />
         </Button>
       </div>
       {/* Suggestion list */}
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">Issues</div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    108 open currently
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  Remediations
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    80 by Day2<sup>TM</sup>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  Recommendations
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    15 compliances
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  Security Posture
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    150 open issues
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  Compliance Assessment
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    40 open issues
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  AWS costs
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    $12,250.00 - Explore more
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          <CommandItem
-            key={0}
-            className="flex flex-col items-start p-0"
-          >
-            <div className="flex items-center justify-between gap-x-2 w-full">
-              <div>
-                <div className="font-semibold">
-                  Cost Optimization
-                </div>
-                <div className="flex gap-x-2 items-center">
-                  <span className="text-xs">
-                    $1,1425 Potential cost savings
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CommandItem>
-          {/* {
-            results?.length ? (
-              results.map((result, index) => (
-                <CommandItem key={index} className="flex flex-col items-start p-0">
-                  <div className="flex items-center justify-between gap-x-2 w-full">
-                    <div>
-                      <div className="font-semibold">{result.name}</div>
-                      <div className="flex gap-x-2 items-center">
-                        <span className="text-xs">{result.type}</span>
-                      </div>
+          {predefinedSuggestions.map(
+            (suggestion, index) => (
+              <CommandItem
+                key={index + 7}
+                className="flex flex-col items-start p-0"
+              >
+                <div className="flex items-center justify-between gap-x-2 w-full">
+                  <div>
+                    <div className="font-semibold">
+                      {suggestion.name}
                     </div>
-                    {
-                      result.status &&
-                      <Badge variant={
-                        result.status === "running" ? "green-signal" :
-                          result.status === "stopped" ? "red-signal" :
-                            result.status === "overloaded" ? "default" :
-                              "yellow-signal"
-                      } className="text-xs p-0 px-1 capitalize">{result.status}</Badge>
-                    }
+                    <div className="flex gap-x-2 items-center">
+                      <span className="text-xs">
+                        {suggestion.type}
+                      </span>
+                    </div>
                   </div>
-                </CommandItem>
-              ))
-            ) : (
-              <CommandItem disabled>No suggestions available</CommandItem>
+                  {suggestion.status && (
+                    <Badge
+                      variant={
+                        suggestion.status.includes("open")
+                          ? "green-signal"
+                          : suggestion.status.includes(
+                              "overloaded"
+                            )
+                          ? "default"
+                          : "red-signal"
+                      }
+                      className="text-xs p-0 px-1 capitalize"
+                    >
+                      {suggestion.status}
+                    </Badge>
+                  )}
+                </div>
+              </CommandItem>
             )
-          } */}
+          )}
+          {RESOURCES?.length ? (
+            RESOURCES.map((result, index) => (
+              <CommandItem
+                key={index}
+                className="flex flex-col items-start p-0"
+              >
+                <div className="flex items-center justify-between gap-x-2 w-full">
+                  <div>
+                    <div className="font-semibold">
+                      {result.name}
+                    </div>
+                    <div className="flex gap-x-2 items-center">
+                      <span className="text-xs">
+                        {result.type}
+                      </span>
+                    </div>
+                  </div>
+                  {result.status && (
+                    <Badge
+                      variant={
+                        result.status === "running"
+                          ? "green-signal"
+                          : result.status === "stopped"
+                          ? "red-signal"
+                          : result.status === "overloaded"
+                          ? "default"
+                          : "yellow-signal"
+                      }
+                      className="text-xs p-0 px-1 capitalize"
+                    >
+                      {result.status}
+                    </Badge>
+                  )}
+                </div>
+              </CommandItem>
+            ))
+          ) : (
+            <CommandItem disabled>
+              No suggestions available
+            </CommandItem>
+          )}
         </CommandGroup>
       </CommandList>
     </CommandDialog>
