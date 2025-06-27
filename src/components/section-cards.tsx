@@ -44,11 +44,11 @@ export function SectionCards() {
               <IconTrendingUp className="size-4" />
             </div>
             <div className="text-muted-foreground">
-              Visitors for the last 6 months
+              3 days left to next billing cycle
             </div>
           </CardFooter>
         </Card>
-        <Card className="@container/card">
+        {/* <Card className="@container/card">
           <CardHeader>
             <CardDescription>New Customers</CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-2xl">
@@ -70,53 +70,33 @@ export function SectionCards() {
               Acquisition needs attention
             </div>
           </CardFooter>
-        </Card>
+        </Card> */}
         <Card className="@container/card">
           <CardHeader>
             <CardDescription>
-              Active Accounts
+              Overall bandwidth
             </CardDescription>
             <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-2xl">
-              45,678
+              2.5 TB
             </CardTitle>
             <CardAction>
-              <Badge variant="yellow-signal">
+              {/* <Badge variant="yellow-signal">
                 <IconTrendingUp />
-                {/* To depict 0% */}
                 No change
+              </Badge> */}
+              <Badge variant="red-signal">
+                <IconTrendingDown />
+                -20%
               </Badge>
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1.5 text-sm">
             <div className="line-clamp-1 flex gap-2 font-medium">
-              Strong user retention{" "}
-              <IconTrendingUp className="size-4" />
+              Down 20% this period{" "}
+              <IconTrendingDown className="size-4" />
             </div>
             <div className="text-muted-foreground">
-              Engagement exceed targets
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="@container/card">
-          <CardHeader>
-            <CardDescription>Growth Rate</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-2xl">
-              4.5%
-            </CardTitle>
-            <CardAction>
-              <Badge variant="green-signal">
-                <IconTrendingUp />
-                +4.5%
-              </Badge>
-            </CardAction>
-          </CardHeader>
-          <CardFooter className="flex-col items-start gap-1.5 text-sm">
-            <div className="line-clamp-1 flex gap-2 font-medium">
-              Steady performance increase{" "}
-              <IconTrendingUp className="size-4" />
-            </div>
-            <div className="text-muted-foreground">
-              Meets growth projections
+              Needs investigation on usage
             </div>
           </CardFooter>
         </Card>
@@ -135,11 +115,11 @@ export function SectionCards() {
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1.5 text-sm">
             <div className="line-clamp-1 flex gap-2 font-medium">
-              Steady performance increase{" "}
+              More resources launched{" "}
               <IconTrendingUp className="size-4" />
             </div>
             <div className="text-muted-foreground">
-              Meets growth projections
+              Exceeding resource targets
             </div>
           </CardFooter>
         </Card>
@@ -150,7 +130,7 @@ export function SectionCards() {
               1282
             </CardTitle>
             <CardAction>
-              <Badge variant="green-signal">
+              <Badge variant="red-signal">
                 <IconTrendingUp />
                 +4.5%
               </Badge>
@@ -158,36 +138,11 @@ export function SectionCards() {
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1.5 text-sm">
             <div className="line-clamp-1 flex gap-2 font-medium">
-              Steady performance increase{" "}
+              Error rate increased{" "}
               <IconTrendingUp className="size-4" />
             </div>
             <div className="text-muted-foreground">
-              Meets growth projections
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="@container/card">
-          <CardHeader>
-            <CardDescription>
-              Total Notifications
-            </CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-2xl">
-              128
-            </CardTitle>
-            <CardAction>
-              <Badge variant="green-signal">
-                <IconTrendingUp />
-                +4.5%
-              </Badge>
-            </CardAction>
-          </CardHeader>
-          <CardFooter className="flex-col items-start gap-1.5 text-sm">
-            <div className="line-clamp-1 flex gap-2 font-medium">
-              Steady performance increase{" "}
-              <IconTrendingUp className="size-4" />
-            </div>
-            <div className="text-muted-foreground">
-              Meets growth projections
+              Needs immediate attention
             </div>
           </CardFooter>
         </Card>

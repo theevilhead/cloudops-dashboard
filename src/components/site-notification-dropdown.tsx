@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,21 +11,31 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNotification } from "@/context/NotificationContext";
-import { IconBell } from "@tabler/icons-react";
 import {
   CheckCheck,
   CheckCircle,
   FileWarning,
   InfoIcon,
   TriangleAlert,
+  BellDot,
+  BellIcon,
 } from "lucide-react";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useEffect, useState } from "react";
 dayjs.extend(relativeTime);
 
 function SiteNotificationDropdown() {
+  const [isUnread, setIsUnread] = useState(false);
   const { notifications } = useNotification();
+
+  useEffect(() => {
+    // Since we have 7 hardcoded notifications, we can set isUnread to true if there are more than 7 notifications
+    if (notifications.length > 7) {
+      setIsUnread(true);
+    }
+  }, [notifications.length]);
 
   return (
     <DropdownMenu>
@@ -34,7 +45,11 @@ function SiteNotificationDropdown() {
           className="size-8 group-data-[collapsible=icon]:opacity-0"
           variant="outline"
         >
-          <IconBell />
+          {isUnread ? (
+            <BellDot className="fill-primary" />
+          ) : (
+            <BellIcon />
+          )}
           <span className="sr-only">Notifications</span>
         </Button>
       </DropdownMenuTrigger>
@@ -51,6 +66,7 @@ function SiteNotificationDropdown() {
             variant={"link"}
             className="text-xs text-blue-600 p-0 m-0 dark:text-gray-400"
             size={"sm"}
+            onClick={() => setIsUnread(false)}
           >
             <CheckCheck className="h-4 w-4" />
             Mark all as read
