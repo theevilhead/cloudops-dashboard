@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState, useRef } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -68,12 +68,12 @@ export const columns: ColumnDef<(typeof RESOURCES)[0]>[] = [
     },
   },
   {
-    id: "region",
-    accessorKey: "region",
-    header: "Region",
+    id: "type",
+    accessorKey: "type",
+    header: "Type",
     cell: ({ row }) => (
-      <div className="uppercase">
-        {row.getValue("region")}
+      <div className="capitalize">
+        {row.getValue("type")}
       </div>
     ),
   },
@@ -186,34 +186,15 @@ export const columns: ColumnDef<(typeof RESOURCES)[0]>[] = [
   },
 ];
 
-const fuseOptions = {
-  // isCaseSensitive: false,
-  // includeScore: false,
-  // ignoreDiacritics: false,
-  // shouldSort: true,
-  // includeMatches: false,
-  // findAllMatches: false,
-  // minMatchCharLength: 1,
-  // location: 0,
-  threshold: 0.1,
-  // distance: 100,
-  // useExtendedSearch: false,
-  // ignoreLocation: false,
-  // ignoreFieldNorm: false,
-  // fieldNormWeight: 1,
-  keys: Object.keys(RESOURCES[0]),
-};
-
-const fuse = new Fuse(RESOURCES, fuseOptions);
-
 export function ResourcesTable() {
-  const [sorting, setSorting] =
-    React.useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] =
-    React.useState<ColumnFiltersState>([]);
+    useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [data, setData] = React.useState(RESOURCES);
+    useState<VisibilityState>({});
+  const [data, setData] = useState(RESOURCES);
+
+  const inputRef = useRef(null);
 
   const table = useReactTable({
     data,
@@ -232,11 +213,26 @@ export function ResourcesTable() {
     },
   });
 
-  const searchTable = (searchKey: string) => {
+  const searchTable = () => {
+    const searchKey = inputRef.current
+      ? (inputRef.current as HTMLInputElement).value
+      : "";
+
     if (!searchKey || searchKey.trim() === "") {
       setData(RESOURCES); // Reset to original data if search key is empty
       return; // Return all data if search key is empty
     }
+
+    const activeColumns = table
+      .getAllColumns()
+      .filter((column) => column.getIsVisible())
+      .map((column) => column.id);
+
+    const fuse = new Fuse(RESOURCES, {
+      keys: activeColumns,
+      threshold: 0.09,
+    });
+
     // Perform search using Fuse.js
     const results = fuse.search(searchKey);
 
@@ -260,20 +256,9 @@ export function ResourcesTable() {
       <CardContent className="px-2 sm:px-6">
         <div className="flex items-center pb-4">
           <Input
+            ref={inputRef}
             placeholder="Filter by name, status, region etc"
-            onChange={(event) =>
-              searchTable(event.target.value)
-            }
-            // value={
-            //   (table
-            //     .getColumn("name")
-            //     ?.getFilterValue() as string) ?? ""
-            // }
-            // onChange={(event) =>
-            // table
-            //   .getColumn("name")
-            //   ?.setFilterValue(event.target.value)
-            // }
+            onChange={searchTable}
             className="max-w-sm"
           />
           <DropdownMenu>
@@ -292,9 +277,12 @@ export function ResourcesTable() {
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
+                      onCheckedChange={(value) => {
+                        column.toggleVisibility(!!value);
+                        setTimeout(() => {
+                          searchTable();
+                        }, 10);
+                      }}
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
