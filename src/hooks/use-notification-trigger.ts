@@ -22,7 +22,7 @@ const sendNotification = ({
     });
   } catch {
     window.alert(
-      "The broadcast channel seems to be closed. Please refresh the main page to re-establish the connection."
+      "The broadcast channel seems to be closed. Please refresh both main page and this to re-establish the connection."
     );
   }
 };
