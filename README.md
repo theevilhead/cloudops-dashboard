@@ -1,12 +1,14 @@
 # CloudOps Dashboard
 
+For a quick overview and feature walkthrough please watch the video - https://youtu.be/mDvy6Q2lkgk
+
 ## Overview
 
 This repository contains a CloudOps Dashboard built with React, Next.js, TypeScript, and Tailwind CSS. The dashboard is designed to provide insights into cloud operations, including resource usage, performance metrics, and system health.
 
 ## Technologies Used
-- **React**
-- **Next.js**static site generation.
+- **React@19.0.0**
+- **Next.js@15.3.4**
 - **TypeScript**
 - **Tailwind CSS**
 - **Radix UI**
@@ -18,8 +20,8 @@ This repository contains a CloudOps Dashboard built with React, Next.js, TypeScr
 - **class-variance-authority** - A utility for managing class names in a type-safe way.
 - **Lucide Icons** - A set of icons for use in web applications.
 - **Hosted on** - Vercel
-
-## Speacial mentions
+- **Running on node@v22.12.0**
+## Special mentions
 
 - **Broadcast Channel API**: The dashboard uses the Broadcast Channel API to enable real-time communication between different tabs or windows of the application. This allows for features like real-time notifications and updates across multiple instances of the dashboard.
 - **React Context API**: The dashboard uses the React Context API to manage user state, notifications allowing for easy access to shared data across components without prop drilling.
