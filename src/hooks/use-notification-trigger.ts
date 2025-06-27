@@ -6,13 +6,25 @@ const broadcast = new BroadcastChannel("notifications");
 export type NotificationTriggerType = {
   type: string;
   message: string;
-}
+  createdAt: Date;
+};
 
-const sendNotification = ({type, message}: NotificationTriggerType) => {
-  broadcast.postMessage({
-    type: type,
-    message: message,
-  });
+const sendNotification = ({
+  type,
+  message,
+  createdAt,
+}: NotificationTriggerType) => {
+  try {
+    broadcast.postMessage({
+      type: type,
+      message: message,
+      createdAt: createdAt.toISOString(),
+    });
+  } catch {
+    window.alert(
+      "The broadcast channel seems to be closed. Please refresh the main page to re-establish the connection."
+    );
+  }
 };
 
 export function useNotificationTrigger() {
@@ -21,9 +33,9 @@ export function useNotificationTrigger() {
     return () => {
       broadcast.close();
     };
-  })
+  });
 
   return {
     sendNotification,
-  }
+  };
 }

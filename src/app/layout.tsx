@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
@@ -30,7 +30,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Toaster richColors expand closeButton duration={2000} />
+        <Toaster
+          richColors
+          expand
+          closeButton
+          duration={5000}
+        />
       </body>
     </html>
   );
